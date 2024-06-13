@@ -44,8 +44,8 @@ export class RegistrarClienteComponent {
         Swal.close();
         Swal.fire({
           icon: 'error',
-          title: 'Advertencia!...',
-          text: '!Ah ocurrido un error!',
+          title: 'Advertencia!',
+          text: 'Error al cargar datos de clientes.',
         });
       }
     );
@@ -58,16 +58,16 @@ export class RegistrarClienteComponent {
         Swal.close();
         Swal.fire({
           icon: 'success',
-          title: 'eliminarPersona!...',
-          text: '!Se elimino exitosamente los datos de la persona!',
+          title: 'Eliminar Cliente!',
+          text: 'Se elimino exitosamente los datos del cliente.',
         });
       },
       (err: any) => {
         Swal.close();
         Swal.fire({
           icon: 'error',
-          title: 'Advertencia!...',
-          text: '!Ah ocurrido un error al eliminar persona!',
+          title: 'Advertencia!',
+          text: 'Error al eliminar cliente.',
         });
       }
     );
@@ -80,16 +80,16 @@ export class RegistrarClienteComponent {
         Swal.close();
         Swal.fire({
           icon: 'success',
-          title: 'registrarPersona!...',
-          text: '!Se registro exitosamente los datos de la persona!',
+          title: 'Registrar Cliente!',
+          text: 'Se registró exitosamente los datos del cliente.',
         });
       },
       (err: any) => {
         Swal.close();
         Swal.fire({
           icon: 'error',
-          title: 'Advertencia!...',
-          text: '!Ah ocurrido un error al registrar persona!',
+          title: 'Advertencia!',
+          text: 'Error al registrar cliente.',
         });
       }
     );
@@ -99,7 +99,7 @@ export class RegistrarClienteComponent {
     Swal.close();
     Swal.fire({
       icon: 'warning',
-      title: 'editarPersona!...',
+      title: 'Editar Cliente!',
       text: '!Falta implementar esta funcionalidad!',
     });
   }
