@@ -1,0 +1,24 @@
+<div class="container">
+<div class="card">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">ID</th>
+        <th scope="col">Problema</th>
+        <th scope="col">Solución</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let problemaTecnico of bitacora; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ problemaTecnico.idproblema}}</td>
+        <td>{{ problemaTecnico.descripcion }}</td>
+        <td>{{ problemaTecnico.solucion }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
