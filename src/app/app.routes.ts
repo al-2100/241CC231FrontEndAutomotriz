@@ -8,6 +8,7 @@ import {BitacoraComponent} from "./component/bitacora/bitacora.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: '/principal', pathMatch: 'full'},
+  {path: 'principal', component: PrincipalComponent},
   {path: 'registrar-cliente', component:RegistrarClienteComponent},
   {path: 'registrar-ost', component:RegistrarOstComponent},
   {path: 'bitacora', component:BitacoraComponent}
