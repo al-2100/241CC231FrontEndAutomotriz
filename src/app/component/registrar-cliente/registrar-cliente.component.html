@@ -60,6 +60,10 @@
             <td>{{ cliente.sexo }}</td>
             <td>{{ cliente.direccion }}</td>
             <td>{{ cliente.telefono }}</td>
+            <td>
+              <button class="btn btn-primary" (click)="editarCliente(cliente)">Editar</button> <!-- Botón de editar -->
+              <button class="btn btn-danger" (click)="eliminarCliente(cliente)">Eliminar</button> <!-- Botón de eliminar -->
+            </td>
           </tr>
           </tbody>
         </table>

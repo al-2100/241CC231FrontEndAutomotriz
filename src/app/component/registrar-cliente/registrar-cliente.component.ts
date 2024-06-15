@@ -18,6 +18,7 @@ import {CommonModule} from "@angular/common";
 export class RegistrarClienteComponent {
   clienteArray: Cliente[] = [];
   clienteForm: FormGroup;
+  clienteSeleccionado: Cliente | null = null;
 
   constructor(private clienteService: ClienteService) {
     this.clienteForm = new FormGroup({
@@ -73,35 +74,65 @@ export class RegistrarClienteComponent {
     );
   }
 
-  registrarCliente(): void {
-    this.clienteService.registrarCliente(this.clienteForm.value).subscribe(
-      (result: any) => {
-        this.ngOnInit();
-        Swal.close();
-        Swal.fire({
-          icon: 'success',
-          title: 'Registrar Cliente!',
-          text: 'Se registró exitosamente los datos del cliente.',
-        });
-      },
-      (err: any) => {
-        Swal.close();
-        Swal.fire({
-          icon: 'error',
-          title: 'Advertencia!',
-          text: 'Error al registrar cliente.',
-        });
-      }
-    );
+  editarCliente(cliente: Cliente): void {
+    this.clienteSeleccionado = cliente;
+    this.clienteForm.setValue({
+      nombres: cliente.nombres,
+      apellidos: cliente.apellidos,
+      dni: cliente.dni,
+      sexo: cliente.sexo,
+      direccion: cliente.direccion,
+      telefono: cliente.telefono
+    });
   }
 
-  editarCliente(cliente: Cliente): void {
-    Swal.close();
-    Swal.fire({
-      icon: 'warning',
-      title: 'Editar Cliente!',
-      text: '!Falta implementar esta funcionalidad!',
-    });
+  registrarCliente(): void {
+    if (this.clienteSeleccionado) {
+      // Actualizar el cliente seleccionado
+      const clienteActualizado = { ...this.clienteSeleccionado, ...this.clienteForm.value };
+      this.clienteService.actualizarCliente(clienteActualizado).subscribe(
+        (result: any) => {
+          this.ngOnInit();
+          Swal.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Actualizar Cliente!',
+            text: 'Se actualizó exitosamente los datos del cliente.',
+          });
+          this.clienteForm.reset();
+          this.clienteSeleccionado = null;
+        },
+        (err: any) => {
+          Swal.close();
+          Swal.fire({
+            icon: 'error',
+            title: 'Advertencia!',
+            text: 'Error al actualizar cliente.',
+          });
+        }
+      );
+    } else {
+      // Crear un nuevo cliente
+      this.clienteService.registrarCliente(this.clienteForm.value).subscribe(
+        (result: any) => {
+          this.ngOnInit();
+          Swal.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Registrar Cliente!',
+            text: 'Se registró exitosamente los datos del cliente.',
+          });
+        },
+        (err: any) => {
+          Swal.close();
+          Swal.fire({
+            icon: 'error',
+            title: 'Advertencia!',
+            text: 'Error al registrar cliente.',
+          });
+        }
+      );
+    }
   }
 }
 
