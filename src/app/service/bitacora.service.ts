@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {getConexionBackend} from "../utils/constants";
+import {Bitacora} from "../model/bitacora";
 
-class Bitacora {
-}
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +16,16 @@ export class BitacoraService {
   }
   getBitacoras(): Observable<Bitacora[]> {
     return this.http.get<Bitacora[]>(`${this.BASE_URL}/listar`);
+  }
+  editarBitacora(bitacora: Bitacora) {
+    return this.http.post(`${this.BASE_URL}/update`, bitacora);
+  }
+  registrarBitacora(bitacora: Bitacora) {
+    return this.http.post(`${this.BASE_URL}/insert`, bitacora);
+
+  }
+
+  eliminarBitacora(bitacora: Bitacora) {
+    return this.http.delete(`${this.BASE_URL}/delete`, { body: bitacora});
   }
 }

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BitacoraService } from './problema-tecnico.service';
+import { BitacoraService } from './bitacora.service';
 
 describe('ProblemaTecnicoService', () => {
   let service: BitacoraService;
