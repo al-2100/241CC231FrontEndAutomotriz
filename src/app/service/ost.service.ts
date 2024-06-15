@@ -23,13 +23,14 @@ export class OstService {
     return this.http.get<Ordenserviciotecnico[]>(`${this.BASE_URL}/listar`);
   }
 
-  registrarOST(cliente: Cliente, vehiculo: Vehiculo, falla: string) {
-    const form = {
+  registrarOST(cliente: Cliente, vehiculo: Vehiculo, fallareportada: string): Observable<any>{
+    const data = {
       cliente,
       vehiculo,
-      falla
+      fallareportada
     };
-    return this.http.post(`${this.BASE_URL}/insert`, form);
+    console.log(data);
+    return this.http.post(`${this.BASE_URL}/insert`,  data );
   }
 
   buscarCliente(dni: string): Observable<Cliente> {

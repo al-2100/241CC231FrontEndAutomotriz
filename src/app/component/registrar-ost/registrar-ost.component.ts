@@ -32,7 +32,7 @@ export class RegistrarOstComponent implements OnInit {
     marca: '',
     modelo: '',
   }
-  falla: string = '';
+  fallareportada: string = '';
 
   constructor(private ostService: OstService) { }
 
@@ -88,7 +88,7 @@ export class RegistrarOstComponent implements OnInit {
   }
 
   enviarDatosOST(): void {
-    this.ostService.registrarOST(this.cliente, this.vehiculo, this.falla).subscribe(
+    this.ostService.registrarOST(this.cliente, this.vehiculo, this.fallareportada).subscribe(
       (result: any) => {
         Swal.fire({
           icon: 'success',
