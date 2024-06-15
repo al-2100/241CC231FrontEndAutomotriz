@@ -61,7 +61,7 @@ export class RegistrarOstComponent implements OnInit {
   registrarOST(): void {
     this.ostService.verificarVehiculo(this.vehiculo.placa).subscribe(
       (result: Vehiculo)   => {
-        this.vehiculo.idVehiculo = result.idVehiculo;
+        this.vehiculo = result;
 
         this.enviarDatosOST();
       },
@@ -70,7 +70,9 @@ export class RegistrarOstComponent implements OnInit {
         this.ostService.registrarVehiculo(this.vehiculo.placa, this.vehiculo.marca, this.vehiculo.modelo).subscribe(
           (result: any) => {
             // Usamos el ID del vehículo recién registrado
-            this.vehiculo.idVehiculo = result.id_vehiculo;
+            console.log(result);
+            this.vehiculo.idVehiculo = result.idVehiculo;
+            console.log(this.vehiculo);
             this.enviarDatosOST();
           },
           (err: any) => {

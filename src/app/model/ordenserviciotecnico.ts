@@ -1,7 +1,7 @@
 export interface Ordenserviciotecnico {
   id_ost: number;
-  idcliente: number;
-  idvehiculo: number;
+  id_cliente: number;
+  idVehiculo: number;
   fechahora: Date;
   fallareportada: string;
   diagnostico: string;
