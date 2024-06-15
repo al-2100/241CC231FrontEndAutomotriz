@@ -26,6 +26,6 @@ export class ClienteService {
   }
 
   eliminarCliente(cliente: Cliente) {
-    return this.http.delete(`${this.BASE_URL}/delete`, { body: cliente.id_cliente});
+    return this.http.delete(`${this.BASE_URL}/delete`, {body: cliente});
   }
 }
