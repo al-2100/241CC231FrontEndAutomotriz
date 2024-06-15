@@ -4,12 +4,20 @@ import {Observable} from "rxjs";
 import {Vehiculo} from "../model/vehiculo";
 import {Ordenserviciotecnico} from "../model/ordenserviciotecnico";
 import {Cliente} from "../model/cliente";
+import {getConexionBackend} from "../utils/constants";
 @Injectable({
   providedIn: 'root'
 })
 export class OstService {
-  readonly BASE_URL = "http://localhost:8080/api/v1/ost";
-  constructor(private http:HttpClient) { }
+  BASE_URL: string;
+  BASE_URL_CLIENTE: string;
+  BASE_URL_VEHICULO: string;
+  constructor(private http:HttpClient) {
+    this.BASE_URL = getConexionBackend();
+    this.BASE_URL_CLIENTE = `${this.BASE_URL}/cliente`;
+    this.BASE_URL_VEHICULO = `${this.BASE_URL}/vehiculo`;
+    this.BASE_URL = `${this.BASE_URL}/ost`;
+  }
 
   getOSTs(): Observable<Ordenserviciotecnico[]> {
     return this.http.get<Ordenserviciotecnico[]>(`${this.BASE_URL}/listar`);
@@ -25,16 +33,16 @@ export class OstService {
   }
 
   buscarCliente(dni: string): Observable<Cliente> {
-    return this.http.post<Cliente>('http://localhost:8080/api/v1/cliente/searchDNI', { dni });
+    return this.http.post<Cliente>(`${this.BASE_URL_CLIENTE}/searchDNI`, { dni });
   }
   verificarVehiculo(placa:string): Observable<Vehiculo> {
-    return this.http.post<Vehiculo>('http://localhost:8080/api/v1/vehiculo/searchPlaca', { placa });
+    return this.http.post<Vehiculo>(`${this.BASE_URL_VEHICULO}/searchPlaca`, { placa });
   }
   registrarVehiculo(placa: string, modelo: string, marca: string) {
     const form = {
       placa,
       modelo,
       marca};
-    return this.http.post(`http://localhost:8080/api/v1/vehiculo/insert`, form);
+    return this.http.post(`${this.BASE_URL_VEHICULO}/insert`, form);
   }
 }

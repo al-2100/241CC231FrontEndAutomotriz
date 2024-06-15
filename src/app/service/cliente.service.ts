@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Cliente} from "../model/cliente";
+import {getConexionBackend} from "../utils/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  readonly BASE_URL = "http://localhost:8080/api/v1/cliente";
-  constructor(private http:HttpClient) { }
+  BASE_URL: string;
+  constructor(private http:HttpClient) {
+    this.BASE_URL = getConexionBackend();
+    this.BASE_URL = `${this.BASE_URL}/cliente`;
+  }
 
   getClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(`${this.BASE_URL}/listar`);

@@ -67,7 +67,7 @@ export class RegistrarOstComponent implements OnInit {
       },
       (err: any) => {
         // Si el vehículo no está registrado, lo registramos
-        this.ostService.registrarVehiculo(this.vehiculo.placa, this.vehiculo.marca, this.vehiculo.modelo).subscribe(
+        this.ostService.registrarVehiculo(this.vehiculo.placa, this.vehiculo.modelo, this.vehiculo.marca).subscribe(
           (result: any) => {
             // Usamos el ID del vehículo recién registrado
             console.log(result);

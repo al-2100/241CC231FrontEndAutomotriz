@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {getConexionBackend} from "../utils/constants";
 
 class Bitacora {
 }
@@ -9,10 +10,11 @@ class Bitacora {
   providedIn: 'root'
 })
 export class BitacoraService {
-  private BASE_URL = 'http://localhost:8080/api/v1/problemas'; // Reemplaza esto con la URL de tu API
-
-  constructor(private http: HttpClient) { }
-
+  BASE_URL: string;
+  constructor(private http:HttpClient) {
+    this.BASE_URL = getConexionBackend();
+    this.BASE_URL = `${this.BASE_URL}/problemas`;
+  }
   getBitacoras(): Observable<Bitacora[]> {
     return this.http.get<Bitacora[]>(`${this.BASE_URL}/listar`);
   }
